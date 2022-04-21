@@ -101,7 +101,7 @@ export const ExternalChains = [
         portID: 'transfer',
         currency: {
             coinDenom: 'XPRT',
-            coinMinimalDenom: 'uXPRT',
+            coinMinimalDenom: 'uxprt',
             coinDecimals: 6,
             coinGeckoId: 'persistence',
         },
