@@ -8,10 +8,10 @@ site = {bucket = "./build",entry-point = "workers-site"}
 compatibility_date = "2021-10-08"
 
 [env.staging-wallet]
-routes = ["https://staging-wallet.assetmantle.one/*"]
+routes = ["https://staging.assetmantle.one/*"]
 
-[env.staging-testnet-wallet]
-routes =  ["https://staging-testnet-wallet.assetmantle.one/*"]
+#[env.staging-testnet-wallet]
+#routes =  ["https://staging-testnet-wallet.assetmantle.one/*"]
 
 [env.mainnet-wallet]
 routes = ["https://wallet.assetmantle.one/*"]
