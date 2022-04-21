@@ -19,9 +19,9 @@ export const fetchTokenPriceError = (data) => {
 };
 
 export const fetchTokenPrice = () => (dispatch) => {
-    CoinGeckoClient.simple.price({ids: "persistence"}).then((res) => {
-        if (res.data.persistence.usd) {
-            dispatch(fetchTokenPriceSuccess(res.data.persistence.usd));
+    CoinGeckoClient.simple.price({ids: "assetmantle"}).then((res) => {
+        if (res.data.assetmantle.usd) {
+            dispatch(fetchTokenPriceSuccess(res.data.assetmantle.usd));
         }
     }).catch((error) => {
         Sentry.captureException(error.response
