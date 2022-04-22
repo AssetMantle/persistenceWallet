@@ -2,7 +2,7 @@ export const DefaultChainInfo = {
     counterpartyChainId: process.env.CHAIN_ID,
     chainName: process.env.REACT_APP_CHAIN_NAME,
     prefix: "mantle",
-    ledgerAppName: "AssetMantle",
+    ledgerAppName: "cosmos",
     currency: {
         coinDenom: '$MNTL',
         coinMinimalDenom: 'umntl',
@@ -167,11 +167,11 @@ export const TestNetFoundationNodes = [
 ];
 
 export const MainNetFoundationNodes = [
-    "persistencevaloper19ehhcj0fqw22vwqgll9g70njsv7eq9068pprfu",
-    "persistencevaloper1hndk2s0dx9p0pxd9pxwmls3eywpdu5ha76kpqs",
-    "persistencevaloper1ve9ls5wnczj72mxldewze8u46sarlatmgmp3nd",
-    "persistencevaloper1emrvay43wy7f4ylwen3yxhm9qxddy8zc9zdk5y",
-    "persistencevaloper13dv6h3wtmhmt0jprhaw9pv343qanttkty4685v"
+    "mantlevaloper10pfr9vg8vnvre6r2g6hdct52tutcz94a3nyx0w",
+    "mantlevaloper1nhke5405lsfp8kz89waqnxef6r49ymqz05zvuc",
+    "mantlevaloper1897wx73f4lxndtur9cy3luvxg7jky7khjqccxp",
+    "mantlevaloper1gg7dwkpptnajn8kfxy4qkudun8aknwpyuhpw05",
+    "mantlevaloper1ehe4etw8wc6ey556l2hwrg2jxdl0j7htwcqtrd"
 ];
 
 
