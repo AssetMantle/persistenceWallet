@@ -16,4 +16,4 @@ npm: '7.14.0'
 node: '16.1.0'
 ```
 
-Requires Blockchain Rest Client CORS and RPC client CORS (under `.AssetMantle/config/app.toml`) to be disabled/ configured accordingly.
+Requires Blockchain Rest Client CORS and RPC client CORS (under `.mantleNode/config/app.toml`) to be disabled/ configured accordingly.
