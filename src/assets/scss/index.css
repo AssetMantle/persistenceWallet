@@ -8,6 +8,11 @@ html,
 body {
   font-family: "lato", sans-serif;
 }
+body{
+  background-image: url(../../../src/assets/images/bg.svg) !important;
+  background-size: 100% auto !important;
+  background-repeat: no-repeat repeat !important;
+}
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -430,7 +435,7 @@ body {
   font-size: 14px;
   line-height: 150%;
   height: calc(2.3em + 0.75rem + 2px);
-  border-radius: 0;
+  border-radius: 12px !important;
   padding-left: 10px;
 }
 .validators-list-selection .MuiSelect-select {
@@ -3783,4 +3788,16 @@ ul li em {
 
 p.usd {
   color: #9d9d9d;
+}
+
+.css-13jmfyo-multiValue {
+  background-color: #ffc942 !important;
+  color: #2c2c2c !important;
+  border-radius: 4px !important;
+}
+.rewards-validators-list .react-select__control {
+  border-radius: 4px !important;
+}
+#react-select-2-listbox > * {
+  background-color: #2c2c2c !important;
 }

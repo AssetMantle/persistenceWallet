@@ -56,6 +56,12 @@ const Validators = () => {
         }));
     };
 
+    const style = {
+        option: () => ({
+            color: '#000',
+        }),
+    };
+
     return (
         <>
             <div className="form-field rewards-validators-list">
@@ -67,6 +73,7 @@ const Validators = () => {
                     components={{
                         Option
                     }}
+                    styles={style}
                     theme={(theme) => ({
                         ...theme,
                         borderRadius: 0,
