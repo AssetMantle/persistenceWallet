@@ -3,7 +3,7 @@ import {DefaultChainInfo} from "../../../../config";
 let English = {
     translations: {
         "HOME_PAGE_TEXT": `Securely store, transfer and stake your  ${DefaultChainInfo.currency.coinDenom} tokens with the AssetMantle Wallet`,
-        "HOME_PAGE_SUB_TEXT": `Earn upto 35% annual rewards by staking your  ${DefaultChainInfo.currency.coinDenom}`,
+        "HOME_PAGE_SUB_TEXT": `Earn upto 135% annual rewards by staking your  ${DefaultChainInfo.currency.coinDenom}`,
         "CREATE_WALLET": "Create Wallet",
         "IMPORT_EXISTS_WALLET": "Import an existing wallet",
         "SIGN_IN": "Sign In",
