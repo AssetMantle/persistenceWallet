@@ -95,16 +95,14 @@ const TokenInfo = (props) => {
                         <div className="line">
                             <p className="key">{t("CURRENT_PRICE")}</p>
                             <p className="value"><span className="inner-grid-icon"/>
-                                {/*$<NumberView value={formatNumber(props.tokenPrice)}/>*/}
-                                N/A
+                                $<NumberView value={formatNumber(props.tokenPrice)}/>
                             </p>
                         </div>
                         <div className="line">
                             <p className="key">{t("CURRENT_VALUE")}</p>
                             <p className="value"><span className="inner-grid-icon"/>
-                                {/*$<NumberView*/}
-                                {/*    value={formatNumber((props.delegations + props.balance + props.unbond) * props.tokenPrice)}/>*/}
-                                N/A
+                                $<NumberView
+                                    value={formatNumber((props.delegations + props.balance + props.unbond) * props.tokenPrice)}/>
                             </p>
                         </div>
 
