@@ -60,7 +60,7 @@ const Wallet = () => {
                         <Tab eventKey="Send" title="Send">
                             <Send/>
                         </Tab>
-                        <Tab eventKey="IBC" title={ibcTitle} tabClassName="ibc-tab hidden" disabled={true}>
+                        <Tab eventKey="IBC" title={ibcTitle} tabClassName="ibc-tab">
                             <SendIbc/>
                         </Tab>
                         <Tab eventKey="Receive" title="Receive">
