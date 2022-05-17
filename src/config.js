@@ -61,34 +61,26 @@ export const IBCChainInfos = [
     {
         counterpartyChainId: 'osmosis-1',
         chainName:'Osmosis',
-        sourceChannelId: 'channel-6',
+        sourceChannelId: 'channel-0',
         portID:'transfer',
-        coinMinimalDenom: 'uatom',
+        coinMinimalDenom: 'uosmo',
         prefix:'osmo'
-    },
-    {
-        counterpartyChainId: 'cosmoshub-4',
-        chainName:'Cosmos',
-        sourceChannelId: 'channel-24',
-        portID:'transfer',
-        coinMinimalDenom: 'uatom',
-        prefix:'cosmos'
     },
     {
         counterpartyChainId: 'juno-1',
         chainName:'Juno',
-        sourceChannelId: 'channel-37',
+        sourceChannelId: 'channel-2',
         portID:'transfer',
         coinMinimalDenom: 'ujuno',
         prefix:'juno'
     },
     {
-        counterpartyChainId: 'gravity-bridge-3',
-        chainName:'Gravity',
-        sourceChannelId: 'channel-38',
+        counterpartyChainId: 'crescent-1',
+        chainName:'Crescent',
+        sourceChannelId: 'channel-3',
         portID:'transfer',
-        coinMinimalDenom: 'ugraviton',
-        prefix:'gravity'
+        coinMinimalDenom: 'ucre',
+        prefix:'cre'
     },
 ];
 

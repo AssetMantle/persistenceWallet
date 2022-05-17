@@ -168,6 +168,10 @@ export const validateAddress = (address, prefix = "mantle") => {
         if (!address.startsWith("gravity") || address.length !== 46) {
             return new Error('Invalid Recipient Address');
         }
+    } else if (prefix === "cre") {
+        if (!address.startsWith("cre") || address.length !== 42) {
+            return new Error('Invalid Recipient Address');
+        }
     } else if (prefix === "juno") {
         if (!address.startsWith("juno") || address.length !== 43) {
             return new Error('Invalid Recipient Address');
