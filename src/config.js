@@ -66,22 +66,7 @@ export const IBCChainInfos = [
         coinMinimalDenom: 'uosmo',
         prefix:'osmo'
     },
-    {
-        counterpartyChainId: 'juno-1',
-        chainName:'Juno',
-        sourceChannelId: 'channel-2',
-        portID:'transfer',
-        coinMinimalDenom: 'ujuno',
-        prefix:'juno'
-    },
-    {
-        counterpartyChainId: 'crescent-1',
-        chainName:'Crescent',
-        sourceChannelId: 'channel-3',
-        portID:'transfer',
-        coinMinimalDenom: 'ucre',
-        prefix:'cre'
-    },
+    
 ];
 
 export const ExternalChains = [
