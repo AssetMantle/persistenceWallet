@@ -1,5 +1,5 @@
 import {Modal as ReactModal} from 'react-bootstrap';
-import React from 'react';
+import React, {  useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {hideKeyStoreResultModal, keyStoreLogin, showKeyStoreModal} from "../../../../store/actions/signIn/keyStore";
 import Icon from "../../../../components/Icon";
@@ -9,16 +9,54 @@ import {useHistory} from "react-router-dom";
 const ModalAddress = () => {
     const {t} = useTranslation();
     const history = useHistory();
+
     const show = useSelector((state) => state.signInKeyStore.keyStoreResultModal);
     const response = useSelector((state) => state.signInKeyStore.response.value);
+    const accountNumber = useSelector((state) => state.advanced.accountNumber);
+    const accountIndex = useSelector((state) => state.advanced.accountIndex);
+    const bip39PassPhrase = useSelector((state) => state.advanced.bip39PassPhrase);
     const dispatch = useDispatch();
 
     const handleClose = () => {
         dispatch(hideKeyStoreResultModal());
     };
+    
+    const CurrentKeyStore = {
+        ...localStorage.encryptedMnemonic !== "[object File]" && localStorage.encryptedMnemonic !== undefined &&  JSON.parse(localStorage.encryptedMnemonic),
+        address: response.address, 
+        hdPath: response.walletPath,
+        accountNumber: accountNumber,
+        accountIndex: accountIndex,
+        bip39PassPhrase: bip39PassPhrase
+    };
+
+    const RecentKeyStores = localStorage.recentKeyStores !== undefined ? JSON.parse(localStorage.recentKeyStores) : [];
+
+    var KeyStores= [...RecentKeyStores];
+
+    const [UniqKeyStores,setUniqKeyStores] = useState([]);
+
+    useEffect(() => {
+        if(KeyStores.find(ele=>ele.address === CurrentKeyStore.address)) {
+            setUniqKeyStores([...KeyStores.filter(object => {
+                return object !== undefined && object !== null && object !== "" && object.address !== CurrentKeyStore.address;
+            })]);
+        } else {
+            setUniqKeyStores([...KeyStores]);
+        }
+    }, [CurrentKeyStore.address]);
+    
+
+    const NewRecentKeyStores = [
+        CurrentKeyStore,
+        UniqKeyStores[0] && UniqKeyStores[0],
+        UniqKeyStores[1] && UniqKeyStores[1],
+        UniqKeyStores[2] && UniqKeyStores[2],
+    ].filter(object=>object !== null && object);
 
     const handleLogin = () => {
         dispatch(keyStoreLogin(history));
+        localStorage.recentKeyStores= JSON.stringify(NewRecentKeyStores);
     };
 
     const keyStorePrevious = () => {
