@@ -12,6 +12,7 @@ import wallet from "../../../utils/wallet";
 import * as Sentry from "@sentry/browser";
 import {
     ENCRYPTED_MNEMONIC,
+    KEY_STORE_USING,
     LOGIN_INFO,
 } from "../../../constants/localStorage";
 import {mnemonicTrim} from "../../../utils/scripts";
@@ -86,6 +87,7 @@ export const keyStoreSubmit = () => {
 
                 const walletPath = makeHdPath(accountNumber, accountIndex);
                 const responseData = await wallet.createWallet(mnemonic, walletPath, bip39PassPhrase);
+                console.log(mnemonic);
                 dispatch(keyStoreModalNext());
                 dispatch(showKeyStoreResultModal());
                 dispatch(setKeyStoreResult(
@@ -97,6 +99,47 @@ export const keyStoreSubmit = () => {
                     }));
             }
         };
+    };
+};
+
+export const keyStoreClicked = () => {
+    return async (dispatch, getState) => {
+        const password = getState().keyStore.password;
+        let mnemonic = "";
+        const KeyStoreInUse = JSON.parse(localStorage.getItem(KEY_STORE_USING));
+        const mnemonicObj = {
+            crypted: KeyStoreInUse.crypted,
+            hashpwd: KeyStoreInUse.hashpwd,
+            iv: KeyStoreInUse.iv,
+            salt: KeyStoreInUse.salt,
+        };
+        localStorage.setItem(ENCRYPTED_MNEMONIC, JSON.stringify(mnemonicObj));
+        const decryptedData = decryptKeyStore(mnemonicObj, password.value);
+        if (decryptedData.error != null) {
+            dispatch(setKeyStoreResult(
+                {
+                    value: "",
+                    error: {
+                        message: decryptedData.error,
+                    },
+                }));
+        } else {
+            mnemonic = mnemonicTrim(decryptedData.mnemonic);
+            const accountNumber = helper.getAccountNumber(getState().advanced.accountNumber.value);
+            const accountIndex = helper.getAccountNumber(getState().advanced.accountIndex.value);
+            const bip39PassPhrase = getState().advanced.bip39PassPhrase.value;
+            const walletPath = makeHdPath(accountNumber, accountIndex);
+            const responseData = await wallet.createWallet(mnemonic, walletPath, bip39PassPhrase);
+            dispatch(keyStoreModalNext());
+            dispatch(showKeyStoreResultModal());
+            dispatch(setKeyStoreResult(
+                {
+                    value: responseData,
+                    error: {
+                        message: "",
+                    }
+                }));
+        }
     };
 };
 
