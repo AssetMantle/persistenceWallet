@@ -857,6 +857,10 @@ ul li em {
 .custom-file-section .file-upload input {
   height: 40px;
 }
+.custom-file.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
 .password-field .password-field-container {
   position: relative;
@@ -1877,6 +1881,11 @@ ul li em {
   transform: rotate(180deg);
 }
 
+
+.advanced-wallet-accordion.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 .advanced-wallet-accordion .accordion-body {
   height: auto;
   max-height: 0px;
