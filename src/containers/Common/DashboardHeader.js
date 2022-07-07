@@ -53,7 +53,10 @@ const DashboardHeader = () => {
 
     const closeWallet = () => {
         dispatch(userLogout());
-        localStorage.clear();
+        localStorage.removeItem("loginInfo");
+        localStorage.removeItem("keplrAddress");
+        localStorage.removeItem("encryptedMnemonic");
+        localStorage.removeItem("keyStoreOnUse");
         history.push('/');
         window.location.reload();
         if(loginInfo && loginInfo.loginMode==="ledger"){
