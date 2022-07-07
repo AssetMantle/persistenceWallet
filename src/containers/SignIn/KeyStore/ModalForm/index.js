@@ -1,5 +1,5 @@
 import {Modal as ReactModal} from 'react-bootstrap';
-import React from 'react';
+import React, { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {hideKeyStoreModal} from "../../../../store/actions/signIn/keyStore";
 import FileInput from "./FileInput";
@@ -9,6 +9,7 @@ import Icon from "../../../../components/Icon";
 import Advanced from "../../../Common/Advanced";
 import {useTranslation} from "react-i18next";
 import {hideSignInModal, showSignInModal} from "../../../../store/actions/signIn/modal";
+import RecentKeyStores from './RecentKeyStores';
 
 const ModalForm = () => {
     const {t} = useTranslation();
@@ -16,6 +17,8 @@ const ModalForm = () => {
     const response = useSelector((state) => state.signInKeyStore.response);
 
     const dispatch = useDispatch();
+
+    const [RecentSelected, setRecentSelected] = useState(false);
 
     const handleClose = () => {
         dispatch(hideSignInModal());
@@ -25,6 +28,7 @@ const ModalForm = () => {
     const keyStorePrevious = () => {
         dispatch(hideKeyStoreModal());
         dispatch(showSignInModal());
+        setRecentSelected(false);
     };
 
     return (
@@ -47,10 +51,11 @@ const ModalForm = () => {
                 <p>{t("LOGIN_WITH_KEYSTORE")}</p>
             </ReactModal.Header>
             <ReactModal.Body className="create-wallet-body import-wallet-body">
-                <FileInput/>
+                <RecentKeyStores setSelected={setRecentSelected}/>
+                <FileInput disableState={RecentSelected}/>
                 <Password/>
-                <Advanced/>
-                <Submit/>
+                <Advanced disableState={RecentSelected}/>
+                <Submit statement={RecentSelected}/>
                 {response.error.message !== "" ?
                     <div className="login-error"><p className="error-response">{response.error.message}</p></div>
                     : ""
