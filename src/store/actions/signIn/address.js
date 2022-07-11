@@ -67,7 +67,7 @@ export const addressLogin = (history) => {
             }
             loginInfo.loginToken = "loggedIn";
             loginInfo.address = address;
-            loginInfo.loginMode = "normal";
+            loginInfo.loginMode = "address";
             loginInfo.version = packageJson.version;
             loginInfo.accountNumber = accountNumber;
             loginInfo.accountIndex = accountIndex;
@@ -79,7 +79,7 @@ export const addressLogin = (history) => {
                 }
             }));
             localStorage.setItem(LOGIN_INFO, JSON.stringify(loginInfo));
-            history.push(`/dashboard/wallet/${address}`);
+            history.push(`/dashboard/${address}`);
             window.location.reload();
         } else {
             dispatch(setLoginInfo(
@@ -127,7 +127,7 @@ export const addressDetails = (address) => {
             }
             loginInfo.loginToken = "loggedIn";
             loginInfo.address = address;
-            loginInfo.loginMode = "normal";
+            loginInfo.loginMode = "address";
             loginInfo.version = packageJson.version;
             loginInfo.accountNumber = accountNumber;
             loginInfo.accountIndex = accountIndex;

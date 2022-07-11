@@ -135,7 +135,7 @@ export const keyStoreLogin = (history) => {
         }
         loginInfo.loginToken = "loggedIn";
         loginInfo.address = address;
-        loginInfo.loginMode = "normal";
+        loginInfo.loginMode = "keystore";
         loginInfo.version = packageJson.version;
         loginInfo.accountNumber = accountNumber;
         loginInfo.accountIndex = accountIndex;
@@ -146,7 +146,7 @@ export const keyStoreLogin = (history) => {
                 message: ''
             }
         }));
-        history.push('/dashboard/wallet');
+        history.push(`/dashboard/${loginInfo.loginMode}`);
         window.location.reload();
         
     };

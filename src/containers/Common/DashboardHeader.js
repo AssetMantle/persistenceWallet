@@ -91,14 +91,14 @@ const DashboardHeader = () => {
                         <MobileSidebar/>
                     </div>
                     <Navbar.Brand>
-                        <NavLink to="/dashboard/wallet" className="header-logo">
+                        <NavLink to="/dashboard" className="header-logo">
                         </NavLink>
                     </Navbar.Brand>
 
                     <Nav className="ml-auto" onClick={()=>onClick(t("DASHBOARD"))}>
                         <li className="nav-item link mobile-nav-item">
                             <NavLink className="nav-link primary-medium-color"
-                                to="/dashboard/wallet">
+                                to="/dashboard">
                                 <div className="icon-box">
                                     <Icon
                                         viewClass="icon"

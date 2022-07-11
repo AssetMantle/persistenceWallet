@@ -4,7 +4,7 @@ import helper, {tokenValueConversion} from "../../../utils/helper";
 import Icon from "../../../components/Icon";
 import loader from "../../../assets/images/loader.svg";
 import {fetchTransactions} from "../../../store/actions/transactionHistory";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import DataTable from "../../../components/DataTable";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -13,14 +13,24 @@ import NumberView from "../../../components/NumberView";
 import {formatNumber, stringTruncate} from "../../../utils/scripts";
 import { LOGIN_INFO} from "../../../constants/localStorage";
 import {DefaultChainInfo} from "../../../config";
+// import { useParams } from "react-router-dom";
 
 const EXPLORER_API = process.env.REACT_APP_EXPLORER_API;
 const SendTransactions = (props) => {
-    const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
 
+    // const {selectedLoginMode} = useParams();
+    let selectedAddress = useSelector((state) => state.signInAddress.address);
+
+
+    console.log("inside SendTransactions");
+    const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
+    
     useEffect(() => {
+        console.log("inside useEffect() loginAddress: ", loginInfo && loginInfo.address);
+
         props.fetchTransactions(loginInfo && loginInfo.address, 5, 1);
-    }, []);
+    }, [selectedAddress]);
+
     const columns = [{
         name: 'txHash',
         label: 'Tx Hash',

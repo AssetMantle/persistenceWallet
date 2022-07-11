@@ -13,13 +13,22 @@ import {formatNumber, stringTruncate} from "../../../utils/scripts";
 import NumberView from "../../../components/NumberView";
 import {LOGIN_INFO} from "../../../constants/localStorage";
 import {DefaultChainInfo} from "../../../config";
+import { useParams } from "react-router-dom";
 const EXPLORER_API = process.env.REACT_APP_EXPLORER_API;
+
 const ReceiveTransactions = (props) => {
+    console.log("inside ReceiveTransactions");
+    const {selectedLoginMode} = useParams();
+
+
     const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
 
     useEffect(() => {
+        console.log("inside useEffect() loginAddress: ", loginInfo && loginInfo.address);
         props.fetchReceiveTransactions(loginInfo && loginInfo.address, 5, 1);
-    }, []);
+    }, [selectedLoginMode]);
+
+
     const columns = [{
         name: 'txHash',
         label: 'Tx Hash',

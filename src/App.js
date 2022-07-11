@@ -36,21 +36,23 @@ const App = () => {
     const history = useHistory();
     const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
 
-    const routes = [{
-        path: '/dashboard/wallet/:walletAddress',
-        component: DashboardWallet,
-        private: false,
-    }, 
-    {
-        path: '/dashboard/wallet',
-        component: DashboardWallet,
-        private: false,
-    },
-    {
-        path: '/dashboard/staking',
-        component: DashboardStaking,
-        private: true,
-    }];
+    const routes = [
+        {
+            path: '/dashboard/staking',
+            component: DashboardStaking,
+            private: true,
+        },
+        {
+            path: '/dashboard/:selectedLoginMode',
+            component: DashboardWallet,
+            private: false,
+        }, 
+        {
+            path: '/dashboard',
+            component: DashboardWallet,
+            private: false,
+        },
+    ];
 
     const [isOnline, setNetwork] = useState(window.navigator.onLine);
     const updateNetwork = () => {

@@ -1,12 +1,12 @@
 import React from "react";
-import {OverlayTrigger, Popover, Tab, Tabs} from "react-bootstrap";
+import {Tab, Tabs} from "react-bootstrap";
 import Send from "../Transactions/Send/index";
 import Receive from "./Receive";
 import Transactions from "./TransactionsHistory/index";
 import TokenInfo from "../Common/TokenInfo";
 import InfoRefresh from "../Refresh";
-import SendIbc from "../Transactions/SendIbc/index";
-import Icon from "../../components/Icon";
+// import SendIbc from "../Transactions/SendIbc/index";
+// import Icon from "../../components/Icon";
 import ModalWithdraw from "../Transactions/ModalWithDrawAllRewards";
 import ModalSetWithdrawAddress from "../Transactions/ModalSetWithdrawAddress";
 import FeeModal from "../Common/Fee/Modal";
@@ -17,7 +17,7 @@ import ReactGA from "react-ga";
 
 const Wallet = () => {
 
-    const popoverMemo = (
+    /* const popoverMemo = (
         <Popover id="popover-memo">
             <Popover.Content>
                 This is experimental feature right now.
@@ -36,7 +36,7 @@ const Wallet = () => {
                     icon="exclamation"/></button>
             </OverlayTrigger>
         </p>
-    );
+    ); */
 
     const onClick = (key) => {
         ReactGA.event({
@@ -60,9 +60,9 @@ const Wallet = () => {
                         <Tab eventKey="Send" title="Send">
                             <Send/>
                         </Tab>
-                        <Tab eventKey="IBC" title={ibcTitle} tabClassName="ibc-tab">
+                        {/*  <Tab eventKey="IBC" title={ibcTitle} tabClassName="ibc-tab">
                             <SendIbc/>
-                        </Tab>
+                        </Tab> */}
                         <Tab eventKey="Receive" title="Receive">
                             <Receive/>
                         </Tab>

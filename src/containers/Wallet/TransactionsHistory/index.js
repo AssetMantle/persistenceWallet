@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import {Nav, Tab,} from "react-bootstrap";
 import SendTransactions from "./SendTransactions";
 import ReceiveTransactions from "./ReceiveTransactions";
@@ -11,6 +11,7 @@ const Transactions = () => {
             action: `Clicked on ${key} transactions`
         });
     };
+
     return (
         <div className="txns-container">
             <Tab.Container id="left-tabs-example" defaultActiveKey="sent" onSelect={onClick}>
