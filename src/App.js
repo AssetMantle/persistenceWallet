@@ -38,20 +38,20 @@ const App = () => {
 
     const routes = [
         {
-            path: '/dashboard/staking',
+            path: '/staking',
             component: DashboardStaking,
             private: true,
         },
         {
-            path: '/dashboard/:selectedLoginMode',
+            path: '/:selectedLoginMode',
             component: DashboardWallet,
             private: false,
         }, 
-        {
+        /* {
             path: '/dashboard',
             component: DashboardWallet,
             private: false,
-        },
+        }, */
     ];
 
     const [isOnline, setNetwork] = useState(window.navigator.onLine);

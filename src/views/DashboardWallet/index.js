@@ -73,7 +73,7 @@ const DashboardWallet = () => {
 
         // if the dynamic uri path is missing 
         if(!selectedLoginMode ||  (loginModesArray.indexOf(selectedLoginMode) != -1 && selectedLoginMode !== loginModeLocal)) {
-            history.push(`/dashboard/${loginModeLocal}`);
+            history.push(`/${loginModeLocal}`);
             return;
         } 
 

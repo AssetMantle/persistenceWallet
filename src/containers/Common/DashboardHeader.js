@@ -91,14 +91,14 @@ const DashboardHeader = () => {
                         <MobileSidebar/>
                     </div>
                     <Navbar.Brand>
-                        <NavLink to="/dashboard" className="header-logo">
+                        <NavLink to="/" className="header-logo">
                         </NavLink>
                     </Navbar.Brand>
 
                     <Nav className="ml-auto" onClick={()=>onClick(t("DASHBOARD"))}>
                         <li className="nav-item link mobile-nav-item">
                             <NavLink className="nav-link primary-medium-color"
-                                to="/dashboard">
+                                to="/">
                                 <div className="icon-box">
                                     <Icon
                                         viewClass="icon"
@@ -110,7 +110,7 @@ const DashboardHeader = () => {
                         </li>
                         <li className="nav-item link mobile-nav-item">
                             <NavLink className="nav-link primary-medium-color" onClick={()=>onClick(t("STAKING"))}
-                                to="/dashboard/staking">
+                                to="/staking">
                                 <div className="icon-box">
                                     <Icon
                                         viewClass="icon"

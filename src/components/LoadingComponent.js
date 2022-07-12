@@ -10,7 +10,7 @@ const LoadingComponent = () => {
         <div className="home-page pageError">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <div className="container">
-                    <Navbar.Brand><NavLink to="/dashboard">
+                    <Navbar.Brand><NavLink to="/">
                         <img src={logo} alt="logo"/>
                     </NavLink></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>

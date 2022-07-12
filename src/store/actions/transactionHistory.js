@@ -64,10 +64,10 @@ export const fetchTransactionsError = (list) => {
 export const fetchTransactions = (address, limit, pageNumber) => {
     return async dispatch => {
         dispatch(fetchTransactionsProgress());
+        let txData = [];
         try {
             const tmClient = await Tendermint34Client.connect(tendermintRPCURL);
             const txSearch = await tmClient.txSearch(txSearchParams(address, pageNumber, limit, "message.sender"));
-            let txData = [];
             for (let transaction of txSearch.txs) {
                 const decodedTransaction = decodeTxRaw(transaction.tx);
                 const block = await tmClient.block(transaction.height);
@@ -150,10 +150,10 @@ function txSearchParams(recipientAddress, pageNumber, perPage, type) {
 export const fetchReceiveTransactions = (address, limit, pageNumber) => {
     return async dispatch => {
         dispatch(fetchReceiveTransactionsProgress());
+        let txData = [];
         try {
             const tmClient = await Tendermint34Client.connect(tendermintRPCURL);
             const txSearch = await tmClient.txSearch(txSearchParams(address, pageNumber, limit, "transfer.recipient"));
-            let txData = [];
             for (let transaction of txSearch.txs) {
                 const decodedTransaction = decodeTxRaw(transaction.tx);
                 const block = await tmClient.block(transaction.height);

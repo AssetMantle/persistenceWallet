@@ -132,7 +132,7 @@ export const ledgerLogin = (history) => {
                 message: ''
             }
         }));
-        history.push(`/dashboard/${loginInfo.loginMode}`);
+        history.push(`/${loginInfo.loginMode}`);
         window.location.reload();
     };
 };

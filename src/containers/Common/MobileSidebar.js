@@ -37,7 +37,7 @@ const MobileSidebar = () => {
             <List className="mobile-sidebar-container">
                 <li className="nav-item link">
                     <NavLink className="nav-link primary-medium-color"
-                        to="/dashboard">
+                        to="/">
                         <div className="icon-container">
                             <div className="icon-box">
                                 <Icon
@@ -51,7 +51,7 @@ const MobileSidebar = () => {
                 </li>
                 <li className="nav-item link">
                     <NavLink className="nav-link primary-medium-color"
-                        to="/dashboard/staking">
+                        to="/staking">
                         <div className="icon-container">
                             <div className="icon-box">
                                 <Icon
