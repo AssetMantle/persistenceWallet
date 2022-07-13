@@ -79,7 +79,7 @@ export const addressLogin = (history) => {
                 }
             }));
             localStorage.setItem(LOGIN_INFO, JSON.stringify(loginInfo));
-            history.push(`/${address}`);
+            history.push(`/dashboard/${address}`);
             window.location.reload();
         } else {
             dispatch(setLoginInfo(

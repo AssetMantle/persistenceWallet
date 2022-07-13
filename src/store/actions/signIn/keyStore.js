@@ -146,7 +146,7 @@ export const keyStoreLogin = (history) => {
                 message: ''
             }
         }));
-        history.push(`/${loginInfo.loginMode}`);
+        history.push(`/dashboard/${loginInfo.loginMode}`);
         window.location.reload();
         
     };
