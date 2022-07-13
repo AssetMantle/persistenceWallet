@@ -111,12 +111,14 @@ const DelegatedValidators = (props) => {
     };
 
     return (
-        <div className="txns-container delegated-validators">
-            <DataTable
-                columns={columns}
-                data={tableData}
-                name=""
-                options={options}/>
+        <div className="validators-section">
+            <div className="txns-container delegated-validators">
+                <DataTable
+                    columns={columns}
+                    data={tableData}
+                    name=""
+                    options={options}/>
+            </div>
         </div>
     );
 };

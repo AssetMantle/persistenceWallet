@@ -30,9 +30,7 @@ const DashboardWallet = () => {
     const [invalidPage, setInvalidPage] = useState(false);
     const {selectedLoginMode} = useParams();
 
-
     const loginModesArray = ["keplr", "ledger", "keystore", "address"];
-
 
     const fetchApi = async (address, loginMode) => {
         console.log("inside fetchApi, address: ", address, " loginMode: ", loginMode);
@@ -73,7 +71,7 @@ const DashboardWallet = () => {
 
         // if the dynamic uri path is missing 
         if(!selectedLoginMode ||  (loginModesArray.indexOf(selectedLoginMode) != -1 && selectedLoginMode !== loginModeLocal)) {
-            history.push(`/${loginModeLocal}`);
+            history.push(`/dashboard/${loginModeLocal}`);
             return;
         } 
 

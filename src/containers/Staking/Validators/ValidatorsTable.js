@@ -75,6 +75,7 @@ const ValidatorsTable = (props) => {
         label: t("ACTIONS"),
         options: {sort: false}
     }];
+    
     const tableData = props.validatorsList.length ?
         props.validatorsList.map((validator, index) => [
             <div key={index} className="validator-name">

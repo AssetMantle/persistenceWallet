@@ -108,9 +108,9 @@ const DashboardHeader = () => {
                                 {t("WALLET")}
                             </NavLink>
                         </li>
-                        <li className="nav-item link mobile-nav-item">
+                        {/* <li className="nav-item link mobile-nav-item">
                             <NavLink className="nav-link primary-medium-color" onClick={()=>onClick(t("STAKING"))}
-                                to="/staking">
+                                to="/dashboard/staking">
                                 <div className="icon-box">
                                     <Icon
                                         viewClass="icon"
@@ -118,7 +118,7 @@ const DashboardHeader = () => {
                                 </div>
                                 {t("STAKING")}
                             </NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item link mobile-nav-item">
                             <a className="nav-link primary-medium-color" href={EXPLORER_API}
                                 rel="noopener noreferrer" target="_blank" onClick={() => onClick(t("EXPLORER"))}>

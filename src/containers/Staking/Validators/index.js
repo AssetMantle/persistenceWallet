@@ -24,34 +24,35 @@ const Validators = (props) => {
     };
 
     return (
-        <div className="txns-container">
-            <Tab.Container id="left-tabs-example" defaultActiveKey="active" onSelect={onClick}>
-                <div className="tab-header active-inactive-validators">
-                    <div className="info">
-                        <div className="left">
-                            <p className="info-name"></p>
-                            <Nav variant="pills">
-                                <Nav.Item>
-                                    <Nav.Link eventKey="active"> {t("ACTIVE")}</Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="inactive"> {t("IN_ACTIVE")}</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
+        <div className="validators-section">
+            <div className="txns-container">
+                <Tab.Container id="left-tabs-example" defaultActiveKey="active" onSelect={onClick}>
+                    <div className="tab-header">
+                        <div className="info">
+                            <div className="left">
+                                <Nav variant="pills">
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="active"> {t("ACTIVE")}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="inactive"> {t("IN_ACTIVE")}</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <Tab.Content>
-                    <Tab.Pane eventKey="active">
-                        <ValidatorsTable validatorsList={props.activeList}
-                            activeValidatorsTokens={props.activeVotingPower.active}/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="inactive">
-                        <ValidatorsTable validatorsList={props.inActiveList}
-                            inActiveValidatorsTokens={props.inActiveVotingPower.inActive}/>
-                    </Tab.Pane>
-                </Tab.Content>
-            </Tab.Container>
+                    <Tab.Content>
+                        <Tab.Pane eventKey="active">
+                            <ValidatorsTable validatorsList={props.activeList}
+                                activeValidatorsTokens={props.activeVotingPower.active}/>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="inactive">
+                            <ValidatorsTable validatorsList={props.inActiveList}
+                                inActiveValidatorsTokens={props.inActiveVotingPower.inActive}/>
+                        </Tab.Pane>
+                    </Tab.Content>
+                </Tab.Container>
+            </div>
         </div>
     );
 };

@@ -14,29 +14,18 @@ import KeyStoreModal from "../Common/KeyStore/Modal";
 import Loader from "../../components/Loader";
 import ModalViewTxnResponse from "../Common/ModalViewTxnResponse";
 import ReactGA from "react-ga";
+import ModalValidator from "../Staking/Validators/ModalValidator";
+import ModalDelegate from "../Transactions/ModalDelegate";
+import ModalReDelegate from "../Transactions/ModalReDelegate";
+import ModalUnbond from "../Transactions/ModalUnbond";
+import ModalWithDraw from "../Transactions/ModalWithDrawAllRewards";
+import ModalValidatorWithdraw from "../Transactions/ModalWithdrawValidatorRewards";
+import Validators from "../Staking/Validators";
+import DelegatedValidators from "../Staking/Validators/DelegatedValidators";
+
 
 const Wallet = () => {
 
-    /* const popoverMemo = (
-        <Popover id="popover-memo">
-            <Popover.Content>
-                This is experimental feature right now.
-            </Popover.Content>
-        </Popover>
-    );
-
-    const ibcTitle = (
-        <p>
-            IBC
-            <OverlayTrigger trigger={['hover', 'focus']}
-                placement="bottom"
-                overlay={popoverMemo}>
-                <button className="icon-button info" type="button"><Icon
-                    viewClass="arrow-right"
-                    icon="exclamation"/></button>
-            </OverlayTrigger>
-        </p>
-    ); */
 
     const onClick = (key) => {
         ReactGA.event({
@@ -53,6 +42,12 @@ const Wallet = () => {
             <ModalWithdraw/>
             <ModalSetWithdrawAddress/>
             <ModalViewTxnResponse/>
+            <ModalValidator/>
+            <ModalDelegate/>
+            <ModalReDelegate/>
+            <ModalUnbond/>
+            <ModalWithDraw/>
+            <ModalValidatorWithdraw/>
             <div className="wallet-main-section">
                 <TokenInfo/>
                 <div className="tabs-section">
@@ -60,16 +55,18 @@ const Wallet = () => {
                         <Tab eventKey="Send" title="Send">
                             <Send/>
                         </Tab>
-                        {/*  <Tab eventKey="IBC" title={ibcTitle} tabClassName="ibc-tab">
-                            <SendIbc/>
-                        </Tab> */}
                         <Tab eventKey="Receive" title="Receive">
                             <Receive/>
                         </Tab>
                         <Tab eventKey="Transactions" title="Transactions">
                             <Transactions/>
                         </Tab>
-
+                        <Tab eventKey="all" title="All Validators">
+                            <Validators/>
+                        </Tab>
+                        <Tab eventKey="delegated" title="Delegated">
+                            <DelegatedValidators/>
+                        </Tab>
                     </Tabs>
                     <div>
                         <InfoRefresh/>

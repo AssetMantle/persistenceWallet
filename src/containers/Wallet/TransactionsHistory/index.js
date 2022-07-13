@@ -28,7 +28,6 @@ const Transactions = () => {
                             </Nav>
                         </div>
                     </div>
-
                 </div>
                 <Tab.Content>
                     <Tab.Pane eventKey="sent">

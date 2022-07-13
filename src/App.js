@@ -38,12 +38,12 @@ const App = () => {
 
     const routes = [
         {
-            path: '/staking',
+            path: '/dashboard/staking',
             component: DashboardStaking,
             private: true,
         },
         {
-            path: '/:selectedLoginMode',
+            path: '/dashboard/:selectedLoginMode',
             component: DashboardWallet,
             private: false,
         }, 
