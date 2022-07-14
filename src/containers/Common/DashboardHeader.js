@@ -53,20 +53,15 @@ const DashboardHeader = () => {
     }, []);
 
     const closeWallet = () => {
-        dispatch(userLogout());
+        if(loginInfo && loginInfo.loginMode==="ledger"){
+            TransportWebUSB.close();
+        }
+        history.push('/');
+        window.location.reload();
         localStorage.removeItem("loginInfo");
         localStorage.removeItem("keplrAddress");
         localStorage.removeItem("encryptedMnemonic");
         localStorage.removeItem("keyStoreOnUse");
-        history.push('/');
-        window.location.reload();
-        if(loginInfo && loginInfo.loginMode==="ledger"){
-            TransportWebUSB.close();
-        }
-        
-        history.push('/');
-        window.location.reload();
-        localStorage.clear();
         dispatch(userLogout());
     };
 
