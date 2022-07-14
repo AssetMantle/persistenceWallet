@@ -15,6 +15,7 @@ import KeyStore from "../../containers/DecryptKeyStore";
 // import {showKeyStoreModal} from "../../store/actions/signIn/keyStore";
 
 const Homepage = () => {
+    console.log("inside Homepage");
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const [routName, setRoutName] = useState("false");

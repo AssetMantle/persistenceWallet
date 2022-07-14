@@ -3,6 +3,7 @@ import {pathToString} from "@cosmjs/crypto";
 import {makeHdPath} from "./helper";
 import {DefaultChainInfo} from "../config";
 
+
 const bip39 = require("bip39");
 const prefix = DefaultChainInfo.prefix;
 

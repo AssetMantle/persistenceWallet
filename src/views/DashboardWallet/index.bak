@@ -6,7 +6,6 @@ import ChangeKeyStorePassword from "../../containers/ChangeKeyStorePassword";
 import {useDispatch} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { LOGIN_INFO} from "../../constants/localStorage";
-import {addressDetails, setAddress} from "../../store/actions/signIn/address";
 import {fetchDelegationsCount} from "../../store/actions/delegations";
 import {fetchBalance, fetchTransferableVestingAmount} from "../../store/actions/balance";
 import {fetchRewards, fetchTotalRewards} from "../../store/actions/rewards";
@@ -15,23 +14,24 @@ import {fetchTokenPrice} from "../../store/actions/tokenPrice";
 import {fetchValidators} from "../../store/actions/validators";
 import {updateFee} from "../../utils/helper";
 import {ledgerDisconnect} from "../../utils/ledger";
-import RouteNotFound from "../../components/RouteNotFound";  
+import LoadingComponent from "../../components/LoadingComponent";
+import RouteNotFound from "../../components/RouteNotFound";
 import { validateAddress } from "../../utils/validations";
 import { isBech32Address } from "../../utils/scripts";
 import { DefaultChainInfo } from "../../config";
-import LoadingComponent from "../../components/LoadingComponent";
 
-const DashboardWallet = () => {
+const DashboardWallet = (props) => {
     console.log("inside DashboardWallet");
 
     const dispatch = useDispatch();
     const history = useHistory();
     const [loading, setLoading] = useState(false);
-    const [invalidPage, setInvalidPage] = useState(false);
-    const {selectedLoginMode} = useParams();
+    const [invalidRoute, setInvalidRoute] = useState(false);
+    const {paramValue} = useParams();
+    const [accessAddress, setAccessAddress] = useState("");
 
-
-    const loginModesArray = ["keplr", "ledger", "keystore", "address"];
+    const loginModesArray = ["keplr", "ledger", "keystore"];
+    console.log("history: ", history.location);
 
 
     const fetchApi = async (address, loginMode) => {
@@ -57,79 +57,63 @@ const DashboardWallet = () => {
     };
 
     useEffect(() => {
+        const {isLoggedMode = true} = props || true;
         console.log("inside useEffect of DashboardWallet");
         let address;
         let loginModeLocal;
         const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO)) || {};
 
-        if((selectedLoginMode == null || selectedLoginMode == undefined) && (loginInfo.address == null || loginInfo.address == undefined)) {
-            history.push('/');
-            return;
-        }
-        
-        address = loginInfo && loginInfo.address;
-        loginModeLocal = loginInfo && loginInfo.loginMode;
-        console.log("address: ", address, " loginMode: ", selectedLoginMode, " loginModeLocal: ", loginModeLocal);
+        // the param value will point to login mode (keplr, ledger, etc.)
+        console.log("paramValue: ", paramValue);
+        console.log("isLoggedMode: ", isLoggedMode);
 
-        // if the dynamic uri path is missing 
-        if(!selectedLoginMode ||  (loginModesArray.indexOf(selectedLoginMode) != -1 && selectedLoginMode !== loginModeLocal)) {
-            history.push(`/dashboard/${loginModeLocal}`);
-            return;
-        } 
-
-        // if the dynamic uri doesnt match the current logged in mode, then check from dynamic address in path
-        else if(selectedLoginMode && loginModesArray.indexOf(selectedLoginMode) == -1) {
-            address = selectedLoginMode;
-            loginModeLocal = "address";
-
-            // if the address in the dynamic uri path is an invalid address, go to invalid page
-            if(!(address && validateAddress(address) && isBech32Address(address, DefaultChainInfo.prefix))) {
-                setInvalidPage(true);
+        if(isLoggedMode) {
+            if(!loginInfo || loginInfo.address == null || loginInfo.address == undefined || loginInfo.loginMode == null || loginInfo.loginMode == undefined) {
+                history.push('/');
                 return;
             }
-
-            // if address is valid, then login using address
-            setLoading(true);
-
-            // if match params exist then fetch address details using the param
-            localStorage.removeItem(LOGIN_INFO);
-
-            // assign the value of signIn.address
-            dispatch(setAddress({
-                value: address,
-                error: {
-                    message: ''
-                }
-            }));
             
-            // retrieve login info details
-            dispatch(addressDetails(address));
-
-            console.log("loginmode: ", loginInfo.loginMode, " loginModeLocal: ", loginModeLocal);
-
-            // retrieve wallet related details
-            fetchApi(address, loginModeLocal);
-
-        } 
-        
-        else {
-            // if address is valid, then login using address
-            setLoading(true);
-
-            // retrieve wallet related details
-            fetchApi(address, loginModeLocal);
+            address = loginInfo && loginInfo.address;
+            loginModeLocal = loginInfo && loginInfo.loginMode;
+            console.log("address: ", address, " loginMode: ", paramValue, " loginModeLocal: ", loginModeLocal);
+    
+            // if the dynamic uri path is missing or doesnt match the current logged in mode, then redirect to correct one
+            if(!paramValue || loginModesArray.indexOf(paramValue) == -1 || paramValue !== loginModeLocal) {
+                history.push(`/dashboard/${loginModeLocal}`);
+                return;
+            } else {
+                setLoading(true);
+                setAccessAddress(address);
+    
+                // retrieve wallet related details
+                fetchApi(address, loginModeLocal);
+            }
+        } else {
+            // the param value will point to address for Address View
+            console.log("paramValue: ", paramValue);
+            if(!paramValue) {
+                history.push(`/dashboard`);
+            } else {
+                if (validateAddress(paramValue) && isBech32Address(paramValue, DefaultChainInfo.prefix)) {
+                    setLoading(true);
+                    setAccessAddress(paramValue);
+    
+                    // retrieve wallet related details
+                    fetchApi(paramValue, loginModeLocal); 
+                } else {
+                    setInvalidRoute(true);
+                }
+            }
         }
-
-    }, [selectedLoginMode]);
+    }, [paramValue]);
     
     if(loading) {
         return <LoadingComponent />;
     }
 
-    if(invalidPage) {
+    if(invalidRoute) {
         return <RouteNotFound />;
     }
-
 
     return (
         <div className="main-section">
@@ -137,7 +121,7 @@ const DashboardWallet = () => {
             <GenerateKeyStore/>
             <ChangeKeyStorePassword/>
             <div className="content-section container">
-                <Wallet/>
+                <Wallet address={accessAddress}/>
             </div>
         </div>
     );

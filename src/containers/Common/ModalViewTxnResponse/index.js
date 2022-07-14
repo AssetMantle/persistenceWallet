@@ -52,6 +52,10 @@ const ModalViewTxnResponse = () => {
         return null;
     }
 
+    if(response.rawLog === "panic message redacted to hide potentially sensitive system info: panic") {
+        response.rawLog = "You cannot send vesting amount";
+    }
+
     return (
         <Modal show={show} onHide={handleClose} backdrop="static" centered className="modal-custom ranh">
             {
@@ -92,7 +96,7 @@ const ModalViewTxnResponse = () => {
                                 <img src={failed} alt="success-image"/>
                                 {loginInfo && loginInfo.loginMode === 'keplr' ?
                                     <>
-                                        <p>{response.rawLog}</p>
+                                        <p>{response.code === 11 ? response.rawLog + ". Increase gas limit and/or gas price and try again." : response.rawLog}</p>
                                         <a
                                             href={`${EXPLORER_API}/transactions/${response.transactionHash}`}
                                             target="_blank" className="tx-hash" rel="noopener noreferrer">Tx
@@ -100,7 +104,7 @@ const ModalViewTxnResponse = () => {
                                     </>
                                     :
                                     <>
-                                        <p>{response.rawLog === "panic message redacted to hide potentially sensitive system info: panic" ? "You cannot send vesting amount" : response.rawLog}</p>
+                                        <p>{response.rawLog}</p>
                                         <a
                                             href={`${EXPLORER_API}/transactions/${response.transactionHash}`}
                                             target="_blank" className="tx-hash" rel="noopener noreferrer">Tx

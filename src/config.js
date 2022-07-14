@@ -66,22 +66,7 @@ export const IBCChainInfos = [
         coinMinimalDenom: 'uosmo',
         prefix:'osmo'
     },
-    {
-        counterpartyChainId: 'juno-1',
-        chainName:'Juno',
-        sourceChannelId: 'channel-2',
-        portID:'transfer',
-        coinMinimalDenom: 'ujuno',
-        prefix:'juno'
-    },
-    {
-        counterpartyChainId: 'crescent-1',
-        chainName:'Crescent',
-        sourceChannelId: 'channel-3',
-        portID:'transfer',
-        coinMinimalDenom: 'ucre',
-        prefix:'cre'
-    },
+    
 ];
 
 export const ExternalChains = [
@@ -134,19 +119,6 @@ export const ExternalChains = [
         currency: {
             coinDenom: 'GRAV',
             coinMinimalDenom: 'ugraviton',
-            coinDecimals: 6,
-            coinGeckoId: '',
-        },
-        coinType: 118,
-    },
-    {
-        rpc: 'https://rpc-juno.itastakers.com/',
-        rest: 'https://lcd-juno.itastakers.com/',
-        chainId: 'juno-1',
-        chainName: 'Juno',
-        currency: {
-            coinDenom: 'Juno',
-            coinMinimalDenom: 'ujuno',
             coinDecimals: 6,
             coinGeckoId: '',
         },

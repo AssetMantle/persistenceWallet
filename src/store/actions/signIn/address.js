@@ -67,10 +67,11 @@ export const addressLogin = (history) => {
             }
             loginInfo.loginToken = "loggedIn";
             loginInfo.address = address;
-            loginInfo.loginMode = "normal";
+            loginInfo.loginMode = "address";
             loginInfo.version = packageJson.version;
             loginInfo.accountNumber = accountNumber;
             loginInfo.accountIndex = accountIndex;
+
             dispatch(setLoginInfo({
                 encryptedSeed: false,
                 error: {
@@ -78,7 +79,7 @@ export const addressLogin = (history) => {
                 }
             }));
             localStorage.setItem(LOGIN_INFO, JSON.stringify(loginInfo));
-            history.push('/dashboard/wallet');
+            history.push(`/dashboard/${address}`);
             window.location.reload();
         } else {
             dispatch(setLoginInfo(
@@ -87,7 +88,69 @@ export const addressLogin = (history) => {
                     error: {
                         message: 'Enter Valid Address'
                     }
-                }));
+                }
+            ));
+        }
+    };
+};
+
+export const addressDetails = (address) => {
+    return async (dispatch, getState) => {
+        const loginInfo = {
+            fee: '',
+            account: '',
+            loginToken: '',
+            address: '',
+            loginMode: '',
+            version: '',
+            accountNumber: '',
+            accountIndex: ''
+        };
+        const accountNumber = helper.getAccountNumber(getState().advanced.accountNumber.value);
+        const accountIndex = helper.getAccountNumber(getState().advanced.accountIndex.value);
+        if (address && validateAddress(address) && isBech32Address(address, DefaultChainInfo.prefix)) {
+            const res = getAccount(address).catch(error => {
+                Sentry.captureException(error.response
+                    ? error.response.data.message
+                    : error.message);
+                console.log(error.message);
+                loginInfo.fee = FeeInfo.defaultFee;
+                loginInfo.account = "non-vesting";
+            });
+            const accountType = await vestingAccountCheck(res && res.typeUrl);
+            if (accountType) {
+                loginInfo.fee = FeeInfo.vestingAccountFee;
+                loginInfo.account = "vesting";
+            } else {
+                loginInfo.fee = FeeInfo.defaultFee;
+                loginInfo.account = "non-vesting";
+            }
+            loginInfo.loginToken = "loggedIn";
+            loginInfo.address = address;
+            loginInfo.loginMode = "address";
+            loginInfo.version = packageJson.version;
+            loginInfo.accountNumber = accountNumber;
+            loginInfo.accountIndex = accountIndex;
+
+            dispatch(setLoginInfo({
+                encryptedSeed: false,
+                error: {
+                    message: ''
+                }
+            }));
+            
+            localStorage.setItem(LOGIN_INFO, JSON.stringify(loginInfo));
+            // window.location.reload();
+
+        } else {
+            dispatch(setLoginInfo(
+                {
+                    encryptedSeed: false,
+                    error: {
+                        message: 'Enter Valid Address'
+                    }
+                }
+            ));
         }
     };
 };

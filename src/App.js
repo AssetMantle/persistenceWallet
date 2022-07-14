@@ -9,18 +9,10 @@ import icon_white from "./assets/images/icon_white.svg";
 import {useTranslation} from "react-i18next";
 import KeplrWallet from "./utils/keplr";
 import {useDispatch} from "react-redux";
-import {fetchDelegationsCount} from "./store/actions/delegations";
-import {fetchBalance, fetchTransferableVestingAmount} from "./store/actions/balance";
-import {fetchRewards, fetchTotalRewards} from "./store/actions/rewards";
-import {fetchUnbondDelegations} from "./store/actions/unbond";
-import {fetchTokenPrice} from "./store/actions/tokenPrice";
-import {fetchValidators} from "./store/actions/validators";
 import * as Sentry from "@sentry/react";
 import {Integrations} from "@sentry/tracing";
 import {keplrLogin, setKeplrInfo} from "./store/actions/signIn/keplr";
 import { KEPLR_ADDRESS, LOGIN_INFO} from "./constants/localStorage";
-import {updateFee} from "./utils/helper";
-import {ledgerDisconnect} from "./utils/ledger";
 import ReactGA from 'react-ga';
 import {userLogout} from "./store/actions/logout";
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
@@ -39,19 +31,28 @@ const trackPage = page => {
 //Update the package.json version everytime whenever new deployment happened to production to clear the browser cache.
 
 const App = () => {
+    console.log("inside App.js");
     const {t} = useTranslation();
     const history = useHistory();
     const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
 
-    const routes = [{
-        path: '/dashboard/wallet',
-        component: DashboardWallet,
-        private: true,
-    }, {
-        path: '/dashboard/staking',
-        component: DashboardStaking,
-        private: true,
-    }];
+    const routes = [
+        {
+            path: '/dashboard/staking',
+            component: DashboardStaking,
+            private: true,
+        },
+        {
+            path: '/dashboard/:selectedLoginMode',
+            component: DashboardWallet,
+            private: false,
+        }, 
+        {
+            path: '/dashboard',
+            component: DashboardWallet,
+            private: false,
+        },
+    ];
 
     const [isOnline, setNetwork] = useState(window.navigator.onLine);
     const updateNetwork = () => {
@@ -63,8 +64,9 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    let address;
-    const version = loginInfo && loginInfo.version;
+    let address = loginInfo && loginInfo.address;
+
+    /* const version = loginInfo && loginInfo.version;
     if (version == null || packageJson.version !== version) {
         localStorage.removeItem("loginInfo");
         localStorage.removeItem("keplrAddress");
@@ -73,37 +75,16 @@ const App = () => {
         history.push('/');
     } else {
         address = loginInfo && loginInfo.address;
-    }
+    } */
 
     useEffect(() => {
+        console.log("inside useEffect");
         const page = location.pathname;
         trackPage(page);
     }, [location]);
 
     useEffect(() => {
-        const fetchApi = async () => {
-            if (address !== null && address !== undefined) {
-                await Promise.all([
-                    dispatch(fetchDelegationsCount(address)),
-                    dispatch(fetchBalance(address)),
-                    dispatch(fetchRewards(address)),
-                    dispatch(fetchTotalRewards(address)),
-                    dispatch(fetchUnbondDelegations(address)),
-                    dispatch(fetchTokenPrice()),
-                    dispatch(fetchTransferableVestingAmount(address)),
-                    dispatch(fetchValidators(address)),
-                    updateFee(address),
-                    setInterval(() => dispatch(fetchTotalRewards(address)), 10000),
-                ]);
-                if(loginInfo && loginInfo.loginMode === "ledger"){
-                    ledgerDisconnect(dispatch, history);
-                }
-            }
-        };
-        fetchApi();
-    }, []);
-
-    useEffect(() => {
+        console.log("inside useEffect");
         window.addEventListener("offline", updateNetwork);
         window.addEventListener("online", updateNetwork);
         return () => {
@@ -154,6 +135,9 @@ const App = () => {
         integrations: [new Integrations.BrowserTracing()],
         tracesSampleRate: 1.0,
     });
+
+    console.log("localstorage: ", JSON.parse(window.localStorage.getItem(LOGIN_INFO)));
+    console.log("address: ", address);
 
     return (
         <>

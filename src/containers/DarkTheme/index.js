@@ -8,9 +8,9 @@ import {ThemeProvider} from 'styled-components';
 import Icon from "../../components/Icon";
 
 const Darktheme = () => {
-    const [theme, toggleTheme] = useDarkMode();
+    const [theme, ] = useDarkMode();
     const themeMode = theme === 'light' ? darkTheme : darkTheme;
-    console.log(toggleTheme);
+    // console.log(toggleTheme);
     return (
         <ThemeProvider theme={themeMode}>
             <GlobalStyles/>

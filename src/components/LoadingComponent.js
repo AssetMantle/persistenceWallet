@@ -4,7 +4,7 @@ import {Nav, Navbar} from "react-bootstrap";
 import logo from "../assets/images/footer_logo.svg";
 import {useTranslation} from "react-i18next";
 
-const RouteNotFound = () => {
+const LoadingComponent = () => {
     const {t} = useTranslation();
     return (
         <div className="home-page pageError">
@@ -30,9 +30,9 @@ const RouteNotFound = () => {
                 </div>
             </Navbar>
             <div className="text-container">
-                <h3>Page Not Found</h3>
+                <h3>Loading...</h3>
             </div>
         </div>
     );
 };
-export default RouteNotFound;
+export default LoadingComponent;

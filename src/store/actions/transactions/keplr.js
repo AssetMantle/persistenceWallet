@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 
 export const keplrSubmit = (messages = "") => (dispatch, getState) => {
     dispatch(txInProgress());
-    const response = transactions.TransactionWithKeplr(messages, fee(0, 250000),"");
+    const response = transactions.TransactionWithKeplr(messages, fee(0, 500000),"");
     response.then(result => {
         if (getState().common.txName.value.name !== "send" && getState().common.txName.value.name !== "ibc") {
             dispatch(getState().common.txInfo.value.modal);
