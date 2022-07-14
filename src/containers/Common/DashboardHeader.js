@@ -53,7 +53,6 @@ const DashboardHeader = () => {
     }, []);
 
     const closeWallet = () => {
-<<<<<<< HEAD
         dispatch(userLogout());
         localStorage.removeItem("loginInfo");
         localStorage.removeItem("keplrAddress");
@@ -61,8 +60,6 @@ const DashboardHeader = () => {
         localStorage.removeItem("keyStoreOnUse");
         history.push('/');
         window.location.reload();
-=======
->>>>>>> 3fde10dc878c97867c6bc8d19f392b72a642f644
         if(loginInfo && loginInfo.loginMode==="ledger"){
             TransportWebUSB.close();
         }
