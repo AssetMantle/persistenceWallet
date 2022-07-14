@@ -1752,10 +1752,7 @@ ul li em {
 }
 .home-page.pageError .text-container {
   height: calc(100vh - 78px);
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  align-content: center;
+  text-align: center;
 }
 .home-page.pageError .text-container h3 {
   color: #c2c2c2;
