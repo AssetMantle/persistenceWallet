@@ -17,3 +17,4 @@ export const LEDGER = "ledger";
 export const ADDRESS_INDEX = "addressIndex";
 export const RECENT_KEY_STORES="recentKeyStores";
 export const KEY_STORE_USING= "keyStoreOnUse";
+export const LOGIN_MODES_ARRAY = ["keplr", "ledger", "keystore", "address"];

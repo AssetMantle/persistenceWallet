@@ -5,7 +5,7 @@ import GenerateKeyStore from "../../containers/GenerateKeyStore";
 import ChangeKeyStorePassword from "../../containers/ChangeKeyStorePassword";
 import {useDispatch} from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { LOGIN_INFO} from "../../constants/localStorage";
+import { LOGIN_INFO, LOGIN_MODES_ARRAY} from "../../constants/localStorage";
 import {addressDetails, setAddress} from "../../store/actions/signIn/address";
 import {fetchDelegationsCount} from "../../store/actions/delegations";
 import {fetchBalance, fetchTransferableVestingAmount} from "../../store/actions/balance";
@@ -31,7 +31,7 @@ const DashboardWallet = () => {
     const {selectedLoginMode} = useParams();
 
 
-    const loginModesArray = ["keplr", "ledger", "keystore", "address"];
+    const loginModesArray = LOGIN_MODES_ARRAY;
 
 
     const fetchApi = async (address, loginMode) => {

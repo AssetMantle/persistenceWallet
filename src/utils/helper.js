@@ -231,7 +231,7 @@ export async function getAccount(address) {
 
 export const updateFee = (address) => {
     const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO)) || {};
-    if (loginInfo && loginInfo.loginMode === 'address') {
+    if (loginInfo && (loginInfo.loginMode === 'address' || loginInfo.loginMode === 'keystore')) {
         getAccount(address)
             .then(async res => {
                 const accountType = await vestingAccountCheck(res.typeUrl);

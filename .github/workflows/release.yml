@@ -23,8 +23,8 @@ jobs:
     - run: npm run build --if-present
       env:
         CI: false
-        REACT_APP_API_KEY: 'https://rest-lb.assetmantle.one'
-        REACT_APP_TENDERMINT_RPC_ENDPOINT: 'https://rpc-lb.assetmantle.one'
+        REACT_APP_API_KEY: 'https://rest.assetmantle.one'
+        REACT_APP_TENDERMINT_RPC_ENDPOINT: 'https://rpc.assetmantle.one'
         REACT_APP_WEBSITE_URL: 'https://wallet.assetmantle.one'
         REACT_APP_EXPLORER_API: 'https://explorer.assetmantle.one'
         REACT_APP_MAIL_CHIMP_URL: ''
