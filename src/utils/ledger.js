@@ -31,7 +31,10 @@ export const ledgerDisconnect = async (dispatch, history) =>{
             alert("ledger disconnected please login again");
             history.push('/');
             dispatch(userLogout());
-            localStorage.clear();
+            localStorage.removeItem("loginInfo");
+            localStorage.removeItem("keplrAddress");
+            localStorage.removeItem("encryptedMnemonic");
+            localStorage.removeItem("keyStoreOnUse");
             window.location.reload();
 
         });

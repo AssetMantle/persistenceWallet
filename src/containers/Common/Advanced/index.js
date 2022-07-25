@@ -6,16 +6,16 @@ import AccountNumber from "./AccountNumber";
 import AccountIndex from "./AccountIndex";
 import Bip39PassPhrase from "./Bip39PassPhrase";
 
-const Advanced = () => {
+const Advanced = ({disableState}) => {
     const {t} = useTranslation();
     const [advanceMode, setAdvanceMode] = useState(false);
 
     const handleAccordion = () => {
-        setAdvanceMode(!advanceMode);
+        !disableState && setAdvanceMode(!advanceMode);
     };
 
     return (
-        <div className="advanced-wallet-accordion">
+        <div className={`advanced-wallet-accordion ${disableState ? "disabled" : ""}`}>
             <Card>
                 <Card.Header>
                     <p>

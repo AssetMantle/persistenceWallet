@@ -65,7 +65,7 @@ async function LedgerWallet(hdpath, prefix) {
 
 async function TransactionWithMnemonic(msgs, fee, memo, mnemonic, hdpath = makeHdPath(), bip39Passphrase = "", loginAddress, prefix = addressPrefix) {
     const loginInfo = JSON.parse(localStorage.getItem(LOGIN_INFO));
-    if (loginInfo && loginInfo.loginMode === "address") {
+    if (loginInfo && loginInfo.loginMode === "keystore") {
         const [wallet, address] = await MnemonicWalletWithPassphrase(mnemonic, hdpath, bip39Passphrase, prefix);
         if (address !== loginAddress) {
             throw new Error("Your sign in address and keystore file don’t match. Please try again or else sign in again.");
@@ -130,9 +130,11 @@ async function RpcClient() {
 
 async function getTransactionResponse(address, data, feeAmount, gas, mnemonic = "", txName, accountNumber = 0, addressIndex = 0, bip39Passphrase = "") {
     switch (txName) {
-    case "send":
+    case "send":{
+        console.log("inside send txName of getTransactionResponse");
         return TransactionWithMnemonic(data.message, fee(Math.trunc(feeAmount), gas), data.memo,
             mnemonic, makeHdPath(accountNumber, addressIndex), bip39Passphrase, address);
+    }
     case "delegate":
         return TransactionWithMnemonic(data.message, fee(Math.trunc(feeAmount), gas), data.memo,
             mnemonic, makeHdPath(accountNumber, addressIndex), bip39Passphrase, address);

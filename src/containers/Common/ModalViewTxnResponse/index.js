@@ -25,6 +25,7 @@ const ModalViewTxnResponse = () => {
     const response = useSelector(state => state.common.txResponse.value);
     const handleClose = () => {
         dispatch(hideTxResultModal());
+        window.location.reload();
     };
 
     useEffect(() => {

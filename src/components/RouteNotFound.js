@@ -1,11 +1,26 @@
 import React from "react";
-import {NavLink} from 'react-router-dom';
+import {NavLink, 
+    useHistory
+} from 'react-router-dom';
 import {Nav, Navbar} from "react-bootstrap";
 import logo from "../assets/images/footer_logo.svg";
 import {useTranslation} from "react-i18next";
+// import { useEffect } from "react";
 
 const RouteNotFound = () => {
     const {t} = useTranslation();
+
+    const history = useHistory();
+
+    const reloadApp = () => {
+        localStorage.removeItem("loginInfo");
+        localStorage.removeItem("keplrAddress");
+        localStorage.removeItem("encryptedMnemonic");
+        localStorage.removeItem("keyStoreOnUse");
+        history.push('/');
+        window.location.reload();
+    };
+    
     return (
         <div className="home-page pageError">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -31,6 +46,7 @@ const RouteNotFound = () => {
             </Navbar>
             <div className="text-container">
                 <h3>Page Not Found</h3>
+                <button className="button button-primary large" onClick={reloadApp}>Refresh App</button>
             </div>
         </div>
     );

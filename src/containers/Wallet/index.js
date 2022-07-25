@@ -25,8 +25,6 @@ import DelegatedValidators from "../Staking/Validators/DelegatedValidators";
 
 
 const Wallet = () => {
-
-
     const onClick = (key) => {
         ReactGA.event({
             category: key,

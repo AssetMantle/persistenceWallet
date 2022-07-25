@@ -56,10 +56,12 @@ const DashboardHeader = () => {
         if(loginInfo && loginInfo.loginMode==="ledger"){
             TransportWebUSB.close();
         }
-        
         history.push('/');
         window.location.reload();
-        localStorage.clear();
+        localStorage.removeItem("loginInfo");
+        localStorage.removeItem("keplrAddress");
+        localStorage.removeItem("encryptedMnemonic");
+        localStorage.removeItem("keyStoreOnUse");
         dispatch(userLogout());
     };
 

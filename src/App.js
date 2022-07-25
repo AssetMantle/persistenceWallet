@@ -47,11 +47,19 @@ const App = () => {
             component: DashboardWallet,
             private: false,
         }, 
+<<<<<<< HEAD
         /* {
             path: '/dashboard',
             component: DashboardWallet,
             private: false,
         }, */
+=======
+        {
+            path: '/dashboard',
+            component: DashboardWallet,
+            private: false,
+        },
+>>>>>>> 69273f5833e90e3935935d1ddc71e800446b9561
     ];
 
     const [isOnline, setNetwork] = useState(window.navigator.onLine);
@@ -68,7 +76,10 @@ const App = () => {
 
     /* const version = loginInfo && loginInfo.version;
     if (version == null || packageJson.version !== version) {
-        localStorage.clear();
+        localStorage.removeItem("loginInfo");
+        localStorage.removeItem("keplrAddress");
+        localStorage.removeItem("encryptedMnemonic");
+        localStorage.removeItem("keyStoreOnUse");
         history.push('/');
     } else {
         address = loginInfo && loginInfo.address;
@@ -93,7 +104,10 @@ const App = () => {
     window.addEventListener('storage', () => {
         if (JSON.parse(localStorage.getItem(LOGIN_INFO)) === null){
             dispatch(userLogout());
-            localStorage.clear();
+            
+            localStorage.removeItem("loginInfo");
+            localStorage.removeItem("keplrAddress");
+            localStorage.removeItem("encryptedMnemonic");
             history.push('/');
             window.location.reload();
             if(loginInfo && loginInfo.loginMode==="ledger"){
