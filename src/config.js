@@ -56,7 +56,6 @@ export const TestIBCChainInfos = [
     }
 ];
 
-
 export const IBCChainInfos = [
     {
         counterpartyChainId: 'osmosis-1',
@@ -66,8 +65,48 @@ export const IBCChainInfos = [
         coinMinimalDenom: 'uosmo',
         prefix:'osmo'
     },
-    
+    {
+        counterpartyChainId: 'juno-2',
+        chainName:'Juno',
+        sourceChannelId: 'channel-2',
+        portID:'transfer',
+        coinMinimalDenom: 'ujuno',
+        prefix:'juno'
+    },
+    {
+        counterpartyChainId: 'crescent-3',
+        chainName:'Crescent',
+        sourceChannelId: 'channel-3',
+        portID:'transfer',
+        coinMinimalDenom: 'ucre',
+        prefix:'cre'
+    },
+    {
+        counterpartyChainId: 'evmos-4',
+        chainName:'Evmos',
+        sourceChannelId: 'channel-4',
+        portID:'transfer',
+        coinMinimalDenom: 'aevmos',
+        prefix:'evmos'
+    },
+    {
+        counterpartyChainId: 'stargaze-5',
+        chainName:'Stargaze',
+        sourceChannelId: 'channel-5',
+        portID:'transfer',
+        coinMinimalDenom: 'ustars',
+        prefix:'stars'
+    },
+    {
+        counterpartyChainId: 'gravity-8',
+        chainName:'Gravity',
+        sourceChannelId: 'channel-8',
+        portID:'transfer',
+        coinMinimalDenom: 'ugraviton',
+        prefix:'gravity'
+    },
 ];
+
 
 export const ExternalChains = [
     {
