@@ -47,19 +47,11 @@ const App = () => {
             component: DashboardWallet,
             private: false,
         }, 
-<<<<<<< HEAD
         /* {
             path: '/dashboard',
             component: DashboardWallet,
             private: false,
         }, */
-=======
-        {
-            path: '/dashboard',
-            component: DashboardWallet,
-            private: false,
-        },
->>>>>>> 69273f5833e90e3935935d1ddc71e800446b9561
     ];
 
     const [isOnline, setNetwork] = useState(window.navigator.onLine);
