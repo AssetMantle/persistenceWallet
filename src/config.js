@@ -58,7 +58,7 @@ export const TestIBCChainInfos = [
 
 export const IBCChainInfos = [
     {
-        counterpartyChainId: 'osmosis-1',
+        counterpartyChainId: 'osmosis-0',
         chainName:'Osmosis',
         sourceChannelId: 'channel-0',
         portID:'transfer',
