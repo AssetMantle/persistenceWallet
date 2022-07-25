@@ -58,7 +58,7 @@ export const TestIBCChainInfos = [
 
 export const IBCChainInfos = [
     {
-        counterpartyChainId: 'osmosis-0',
+        counterpartyChainId: 'osmosis-1',
         chainName:'Osmosis',
         sourceChannelId: 'channel-0',
         portID:'transfer',
@@ -66,7 +66,7 @@ export const IBCChainInfos = [
         prefix:'osmo'
     },
     {
-        counterpartyChainId: 'juno-2',
+        counterpartyChainId: 'juno-1',
         chainName:'Juno',
         sourceChannelId: 'channel-2',
         portID:'transfer',
@@ -74,7 +74,7 @@ export const IBCChainInfos = [
         prefix:'juno'
     },
     {
-        counterpartyChainId: 'crescent-3',
+        counterpartyChainId: 'crescent-1',
         chainName:'Crescent',
         sourceChannelId: 'channel-3',
         portID:'transfer',
@@ -82,7 +82,7 @@ export const IBCChainInfos = [
         prefix:'cre'
     },
     {
-        counterpartyChainId: 'evmos-4',
+        counterpartyChainId: 'evmos_9001-2',
         chainName:'Evmos',
         sourceChannelId: 'channel-4',
         portID:'transfer',
@@ -90,7 +90,7 @@ export const IBCChainInfos = [
         prefix:'evmos'
     },
     {
-        counterpartyChainId: 'stargaze-5',
+        counterpartyChainId: 'stargaze-1',
         chainName:'Stargaze',
         sourceChannelId: 'channel-5',
         portID:'transfer',
@@ -98,7 +98,7 @@ export const IBCChainInfos = [
         prefix:'stars'
     },
     {
-        counterpartyChainId: 'gravity-8',
+        counterpartyChainId: 'gravity-bridge-3',
         chainName:'Gravity',
         sourceChannelId: 'channel-8',
         portID:'transfer',
