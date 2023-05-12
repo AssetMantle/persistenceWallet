@@ -1,7 +1,6 @@
 {
-  "name": "AssetMantleWallet",
+  "name": "assetmantlewallet",
   "version": "2.1.5",
-  "private": true,
   "dependencies": {
     "@cosmjs/crypto": "^v0.27.1",
     "@cosmjs/encoding": "^v0.27.1",
