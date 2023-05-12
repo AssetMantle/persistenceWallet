@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import Icon from "../../components/Icon";
 import {NavLink, useHistory} from 'react-router-dom';
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import logo from "../../assets/images/footer_logo.svg";
 import ReactQRCode from "qrcode.react";
 import Copy from "../../components/Copy";
 import {useTranslation} from "react-i18next";
@@ -93,7 +94,8 @@ const DashboardHeader = () => {
                         <MobileSidebar/>
                     </div>
                     <Navbar.Brand>
-                        <NavLink to="/" className="header-logo">
+                        <NavLink to="/" >
+                            <img className="header-logo" src={logo} alt="logo"/>
                         </NavLink>
                     </Navbar.Brand>
 

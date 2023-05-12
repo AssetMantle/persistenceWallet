@@ -1,7 +1,6 @@
 {
-  "name": "AssetMantleWallet",
+  "name": "assetmantlewallet",
   "version": "2.1.5",
-  "private": true,
   "dependencies": {
     "@cosmjs/crypto": "^v0.27.1",
     "@cosmjs/encoding": "^v0.27.1",
@@ -78,5 +77,8 @@
     "eslint": "^7.24.0",
     "eslint-plugin-react": "^7.23.2",
     "long": "^5.2.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
